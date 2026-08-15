@@ -1,9 +1,3 @@
 import { createClient } from '@/lib/supabase/server'
-
 export const revalidate = 0
-
-export default async function Products(){
-  const supabase = await createClient()
-  const { data: products } = await supabase.from('products').select('*').order('sort_order').order('created_at', { ascending: false })
-  return <main className="shell page"><a className="brand" href="/">LAUNCH9<span>LABS</span></a><header className="pageHeader"><span className="sectionNumber">02 // PRODUCTS</span><h1>Software worth<br/><em>using.</em></h1></header><div className="list">{products?.map((p,i)=><article className="listCard" key={p.id}><span>0{i+1}</span><div><small>{p.status.replace('_',' ')} · {p.pricing || 'Pricing TBD'}</small><h2>{p.name}</h2><p>{p.description}</p></div><a href={p.url || '#'}>↗</a></article>)}{(!products || products.length===0) && <p>Products are being prepared.</p>}</div><a className="back" href="/">← Back home</a></main>
-}
+export default async function Products(){const supabase=await createClient();const{data:products}=await supabase.from('products').select('*').order('sort_order').order('created_at',{ascending:false});return <main className="shell page"><a className="brand" href="/">LAUNCH9<span>LABS</span></a><header className="pageHeader"><span className="sectionNumber">02 // PRODUCTS</span><h1>Software worth<br/><em>using.</em></h1></header><div className="list">{products?.map((p,i)=><article className="listCard" key={p.id}>{p.image_url&&<img src={p.image_url} alt="" loading="lazy"/>}<span>0{i+1}</span><div><small>{p.status.replace('_',' ')} · {p.pricing || 'Pricing TBD'}</small><h2>{p.name}</h2><p>{p.description}</p></div><a href={p.url || '#'}>↗</a></article>)}{(!products||products.length===0)&&<p>Products are being prepared.</p>}</div><a className="back" href="/">← Back home</a></main>}
