@@ -1,0 +1,2 @@
+type Props={className?:string}
+export default function Launch9Logo({className=''}:Props){return <svg className={className} viewBox="0 0 512 512" aria-label="Launch9 Labs logo" role="img"><circle cx="250" cy="220" r="150" fill="none" stroke="currentColor" strokeWidth="78"/><path d="M277 356 L379 255 L333 356 L255 434 Z" fill="currentColor"/><path d="M180 385 L245 330 L214 387 L154 435 Z" fill="#a9b7ff"/></svg>}
