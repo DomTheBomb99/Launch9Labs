@@ -1,0 +1,3 @@
+'use client'
+import {useEffect,useState} from 'react'
+export default function Intro(){const[show,setShow]=useState(true);const[exit,setExit]=useState(false);useEffect(()=>{const key='launch9-intro-v2';if(sessionStorage.getItem(key)){setShow(false);return}sessionStorage.setItem(key,'1');const t=setTimeout(()=>setExit(true),1700);const d=setTimeout(()=>setShow(false),2450);return()=>{clearTimeout(t);clearTimeout(d)}},[]);if(!show)return null;return <div className={`intro ${exit?'introExit':''}`}><div className="introGrid"/><div className="introOrb introOrbA"/><div className="introOrb introOrbB"/><div className="introNine">9</div><div className="introBrand"><span>LAUNCH9</span><small>INDEPENDENT SOFTWARE STUDIO</small></div><div className="introLine"/></div>}
