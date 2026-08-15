@@ -1,0 +1,3 @@
+'use client'
+import { useEffect,useRef } from 'react'
+export default function Experience(){const ref=useRef<HTMLDivElement>(null);useEffect(()=>{const el=ref.current;if(!el)return;let mx=0,my=0,tx=0,ty=0,raf=0;const move=(e:MouseEvent)=>{mx=e.clientX;my=e.clientY};const loop=()=>{tx+=(mx-tx)*.075;ty+=(my-ty)*.075;el.style.setProperty('--mx',`${tx}px`);el.style.setProperty('--my',`${ty}px`);raf=requestAnimationFrame(loop)};window.addEventListener('mousemove',move,{passive:true});raf=requestAnimationFrame(loop);return()=>{cancelAnimationFrame(raf);window.removeEventListener('mousemove',move)}},[]);return <div ref={ref} className="experience" aria-hidden="true"><div className="cursorOrb"/><div className="cursorCross"/><div className="grain"/></div>}
