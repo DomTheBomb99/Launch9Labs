@@ -1,0 +1,5 @@
+const projects = [
+  {name:'SnapRefine',type:'Product',status:'In development',description:'A screenshot editor built to turn ordinary captures into polished, presentation-ready visuals.',tags:['Design','Productivity']},
+  {name:'More coming',type:'Experiment',status:'Planned',description:'Launch9 Labs is continuously testing small ideas and turning the useful ones into products.',tags:['R&D']},
+]
+export default function Projects(){return <main className="shell page"><a className="brand" href="/">LAUNCH9<span>LABS</span></a><header className="pageHeader"><span className="sectionNumber">01 // PROJECTS</span><h1>Things we're<br/><em>building.</em></h1></header><div className="list">{projects.map((p,i)=><article className="listCard" key={p.name}><span>0{i+1}</span><div><small>{p.type} · {p.status}</small><h2>{p.name}</h2><p>{p.description}</p><div className="tags">{p.tags.map(t=><b key={t}>{t}</b>)}</div></div><span>↗</span></article>)}</div><a className="back" href="/">← Back home</a></main>}
