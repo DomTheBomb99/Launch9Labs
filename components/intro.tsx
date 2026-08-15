@@ -2,6 +2,7 @@
 import {useEffect,useState} from 'react'
 import Launch9Logo from './Launch9Logo'
 
+// Cinematic portal intro: the logo is the transition into the live homepage.
 export default function Intro(){
   const [show,setShow]=useState(true)
   useEffect(()=>{
