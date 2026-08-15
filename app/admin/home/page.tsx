@@ -1,0 +1,14 @@
+'use client'
+
+import { FormEvent, useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+
+const defaults={headline:'We build software.',subtitle:'',primary_cta_label:'Explore projects',primary_cta_url:'/projects',secondary_cta_label:'About the studio',secondary_cta_url:'/about',hero_image_url:''}
+
+export default function AdminHome(){
+ const supabase=createClient(); const [form,setForm]=useState(defaults); const [msg,setMsg]=useState(''); const [busy,setBusy]=useState(false)
+ useEffect(()=>{supabase.from('homepage_content').select('*').limit(1).maybeSingle().then(({data})=>{if(data)setForm({...defaults,...data})})},[])
+ async function save(e:FormEvent){e.preventDefault();setBusy(true);setMsg('');const {data}=await supabase.from('homepage_content').select('id').limit(1).maybeSingle();const payload={headline:form.headline,subtitle:form.subtitle,primary_cta_label:form.primary_cta_label,primary_cta_url:form.primary_cta_url,secondary_cta_label:form.secondary_cta_label,secondary_cta_url:form.secondary_cta_url,hero_image_url:form.hero_image_url,updated_at:new Date().toISOString()};const r=data?await supabase.from('homepage_content').update(payload).eq('id',data.id):await supabase.from('homepage_content').insert(payload);setMsg(r.error?r.error.message:'Saved.');setBusy(false)}
+ function set(k:string,v:string){setForm(f=>({...f,[k]:v}))}
+ return <main className="shell page adminPage"><header className="adminHeader"><div><a className="brand" href="/admin">LAUNCH9<span>LABS</span></a><p>Homepage editor</p></div><a href="/">View site ↗</a></header><div className="pageHeader"><span className="sectionNumber">HOME // EDITOR</span><h1>Shape the<br/><em>homepage.</em></h1></div><form className="adminForm" onSubmit={save}><label>Headline<input value={form.headline} onChange={e=>set('headline',e.target.value)} /></label><label>Subtitle<textarea value={form.subtitle||''} onChange={e=>set('subtitle',e.target.value)} /></label><div className="formGrid"><label>Primary button<input value={form.primary_cta_label} onChange={e=>set('primary_cta_label',e.target.value)} /></label><label>Primary link<input value={form.primary_cta_url} onChange={e=>set('primary_cta_url',e.target.value)} /></label><label>Secondary button<input value={form.secondary_cta_label} onChange={e=>set('secondary_cta_label',e.target.value)} /></label><label>Secondary link<input value={form.secondary_cta_url} onChange={e=>set('secondary_cta_url',e.target.value)} /></label></div><label>Hero image URL<input value={form.hero_image_url||''} onChange={e=>set('hero_image_url',e.target.value)} placeholder="Optional" /></label><div className="formActions"><button className="button primary" disabled={busy}>{busy?'Saving…':'Save changes'}</button>{msg&&<span>{msg}</span>}</div></form><a className="back" href="/admin">← Back to workspace</a></main>
+}
