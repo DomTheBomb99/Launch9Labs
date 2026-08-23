@@ -1,3 +1,19 @@
 'use client'
-import {useEffect} from 'react'
-export default function SmoothScroll(){useEffect(()=>{let target=window.scrollY,current=target,raf=0;const onWheel=(e:WheelEvent)=>{e.preventDefault();target=Math.max(0,Math.min(document.documentElement.scrollHeight-innerHeight,target+e.deltaY*.72));};const tick=()=>{current+=(target-current)*.11;if(Math.abs(target-current)<.1)current=target;window.scrollTo(0,current);raf=requestAnimationFrame(tick)};window.addEventListener('wheel',onWheel,{passive:false});raf=requestAnimationFrame(tick);return()=>{cancelAnimationFrame(raf);window.removeEventListener('wheel',onWheel)}},[]);return null}
+
+import { useEffect } from 'react'
+import Lenis from 'lenis'
+import 'lenis/dist/lenis.css'
+
+export default function SmoothScroll() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+      anchors: true,
+      stopInertiaOnNavigate: true,
+    })
+
+    return () => lenis.destroy()
+  }, [])
+
+  return null
+}
