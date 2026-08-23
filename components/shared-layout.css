@@ -1,0 +1,37 @@
+:root{--accent:#839AF7;--brand-accent:#839AF7}
+
+.siteNav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:30}
+.siteNav .brand,.siteFooter .brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.06em;font-size:18px}
+.siteNav .brand span,.siteFooter .brand span{font-weight:400;margin-left:0;color:#8f9298}
+.brandLogo{width:28px;height:28px;display:block;color:var(--fg);flex:none}
+.siteNav .navLinks{display:flex;gap:30px;color:#aeb0b5;font-size:12px}
+.siteNav .navLinks a{transition:color .2s ease,opacity .2s ease}
+.siteNav .navLinks a:hover,.siteNav .navLinks a[aria-current=page]{color:var(--fg)}
+.siteNav .navCta{border:1px solid var(--line);padding:11px 15px;border-radius:100px;font-size:11px;transition:transform .25s ease,border-color .25s ease,background .25s ease}
+.siteNav .navCta:hover{border-color:#555;background:var(--soft);transform:translateY(-2px)}
+.siteNav .navCta span{margin-left:10px;color:var(--accent)}
+.pageShell{min-width:0}
+.siteFooter{border-top:1px solid var(--line);padding:45px 0 55px;display:grid;grid-template-columns:1fr 1fr auto;gap:30px;align-items:end}
+.siteFooter p{color:#777b80;font-size:11px;margin:12px 0 0}
+.siteFooter .footerLinks{display:flex;flex-wrap:wrap;gap:20px;font-size:11px;color:#999ca1}
+.siteFooter .footerLinks a{transition:color .2s ease}
+.siteFooter .footerLinks a:hover{color:var(--fg)}
+.siteFooter>small{font-size:9px;color:#64676c}
+.siteFooter .brandLogo{color:var(--fg)}
+
+/* The homepage is structurally migrated to the shared chrome in Step 5.
+   Its existing page-specific chrome remains in source until Step 6 and is hidden here. */
+main.studioPage>.nav,main.studioPage>.footer{display:none}
+
+@media (max-width:800px){
+  .siteNav{height:72px}
+  .siteNav .navLinks{display:none}
+  .siteNav .navCta{padding:9px 12px}
+  .siteNav .brand{font-size:16px}
+  .siteFooter{grid-template-columns:1fr;align-items:start;gap:26px;padding:38px 0 45px}
+  .siteFooter .footerLinks{gap:14px 18px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .siteNav .navCta,.siteNav .navLinks a,.siteFooter .footerLinks a{transition:none}
+}
