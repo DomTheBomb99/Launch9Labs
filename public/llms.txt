@@ -1,0 +1,20 @@
+# Launch9 Labs
+
+Launch9 Labs is an independent software studio building useful digital products.
+
+## Public sections
+
+- Home: https://launch9-labs.vercel.app/
+- Projects: https://launch9-labs.vercel.app/projects
+- Products: https://launch9-labs.vercel.app/products
+- Updates: https://launch9-labs.vercel.app/updates
+- About: https://launch9-labs.vercel.app/about
+- Contact: https://launch9-labs.vercel.app/contact
+
+## Content
+
+The public website presents Launch9 Labs, its software projects, products, studio information, and public updates. Public content is managed through the site's CMS and may change over time.
+
+## Private area
+
+The /admin area is private and should not be indexed or treated as public source material.
